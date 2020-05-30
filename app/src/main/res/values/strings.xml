@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">M3_A1_Hm7</string>
+    <string name="enter_student_name">enter student name:</string>
+    <string name="enter_student_phone_number">enter student phone num:</string>
+    <string name="enter_student_group">enter student group:</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="example_name">Руслан Супатаев</string>
+    <string name="example_numberPhone">+996 557 071 204</string>
+    <string name="example_group">21</string>
+    <string name="enter_other">other</string>
+</resources>

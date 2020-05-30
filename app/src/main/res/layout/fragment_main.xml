@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainFragment"
+    android:background="#DAD098">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/mainFragment_buttonAdd"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="20dp"
+        android:background="@drawable/icon_add"/>
+
+    <Button
+        android:id="@+id/mainFragment_buttonShare"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/icon_share"
+        app:layout_constraintBottom_toBottomOf="@+id/mainFragment_buttonAdd"
+        app:layout_constraintRight_toLeftOf="@id/mainFragment_buttonAdd"
+        app:layout_constraintTop_toTopOf="@id/mainFragment_buttonAdd" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
