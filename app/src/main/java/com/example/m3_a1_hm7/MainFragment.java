@@ -2,6 +2,7 @@ package com.example.m3_a1_hm7;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -20,15 +21,17 @@ import android.widget.Button;
 
 import java.util.Objects;
 
-public class MainFragment extends Fragment implements IStudentAdd {
-    private IVisibleToast iVisibleToast;
+public class MainFragment extends Fragment {
     private AdapterForListStudent adapter = new AdapterForListStudent();
     static final String PUT_EXTRA = "143";
+    static final String TAG = "main_fragment";
+    Shairble shairble;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        iVisibleToast = (IVisibleToast) context;
+        IVisibleToast iVisibleToast = (IVisibleToast) context;
+        shairble = (Shairble) context;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -50,6 +53,12 @@ public class MainFragment extends Fragment implements IStudentAdd {
         recyclerView.setAdapter(adapter);
         Button buttonAdd = v.findViewById(R.id.mainFragment_buttonAdd);
 
+        v.findViewById(R.id.mainFragment_buttonShare).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shairble.shair(adapter.getInfo());
+            }
+        });
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,14 +66,14 @@ public class MainFragment extends Fragment implements IStudentAdd {
                 assert getFragmentManager() != null;
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 Log.d("ololo", "MainFragment: onClick: start FragmentAddStudent");
-                ft.replace(R.id.activity_main_container, new FragmentAddStudent());
+                ft.add(R.id.activity_main_container, new FragmentAddStudent());
+                ft.addToBackStack(null);
                 ft.commit();
             }
         });
         return v;
     }
 
-    @Override
     public void studentAdd(Student s) {
         adapter.add(s);
     }

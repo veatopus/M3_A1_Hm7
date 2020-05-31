@@ -1,5 +1,6 @@
 package com.example.m3_a1_hm7;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -15,9 +16,11 @@ public class AdapterForListStudent extends RecyclerView.Adapter<ViewHolderForLis
 
     void add(@NonNull Student student){
         Log.d("ololo", "AdapterForListStudent: add: add student \n" + student.toString());
+        Log.d("ololo", "AdapterForListStudent: add: data size = " + data.size());
         student.setId(data.size());
         data.add(student);
         Collections.sort(data);
+        Log.d("ololo", "AdapterForListStudent: add: data size = " + data.size());
         notifyDataSetChanged();
     }
 
@@ -36,5 +39,14 @@ public class AdapterForListStudent extends RecyclerView.Adapter<ViewHolderForLis
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+
+    String getInfo() {
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < data.size(); i++) {
+            s.append(data.get(i).toString()).append("\n");
+        }
+        return s.toString();
     }
 }

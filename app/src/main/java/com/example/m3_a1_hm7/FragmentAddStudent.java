@@ -15,7 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class FragmentAddStudent extends Fragment {
-    IVisibleToast iVisibleToast;
+    private IVisibleToast iVisibleToast;
+    IStudentAdd iStudentAdd;
     private Student student;
     private EditText addName;
     private EditText addPhone;
@@ -26,6 +27,7 @@ public class FragmentAddStudent extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         iVisibleToast = (IVisibleToast) context;
+        iStudentAdd = (IStudentAdd) context;
     }
 
     @Override
@@ -44,15 +46,10 @@ public class FragmentAddStudent extends Fragment {
             @Override
             public void onClick(View v) {
                 if (studentInitialisation()) {
-                    MainFragment mainFragment = new MainFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable(MainFragment.PUT_EXTRA, student);
-                    assert getFragmentManager() != null;
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
                     Log.d("ololo", "FragmentAddStudent: onClick: start mainFragment");
-                    mainFragment.setArguments(bundle);
-                    ft.replace(R.id.activity_main_container, mainFragment);
-                    ft.commit();
+                    studentInitialisation();
+                    iStudentAdd.studentAdd(student);
+
                 } else {
                     iVisibleToast.printToast("не все поля заполнены");
                 }
